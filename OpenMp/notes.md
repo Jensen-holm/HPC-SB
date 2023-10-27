@@ -14,3 +14,8 @@ to use it and you import is from the omp.h file just like you include stdio.h. <
 #include <omp.h>
 ```
 
+it wasn't installed by default on my ubutu sysystem so I had to install it with <br>
+this command: <br>
+
+`sudo apt install libomp-dev`
+
