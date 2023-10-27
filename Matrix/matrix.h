@@ -1,11 +1,11 @@
+int new_matrix(int rows, int cols) {
 
-struct matrix {
-    int height;
-    int width;
-};
+    int matrix[rows][cols];
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            matrix[i][j] = rand();
+        }
+    }
 
-
-// mat_mul -> performs matrix multiplication 
-// between the two structs given as input
-matrix mat_mul(matrix a, matrix b) {
+    return matrix;
 }

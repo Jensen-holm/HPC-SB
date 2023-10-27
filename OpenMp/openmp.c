@@ -5,14 +5,12 @@
 
 int main(void) 
 {
+    // set the seed for random numbers in matrix
+    srand(time(0));
 
-    struct matrix m1;
-    m1.width = 10;
-    m1.height = 10;
-
-    struct matrix m2;
-    m2.width = 10;
-    m2.height = 10;
+    // create two matrices with random values
+    int mat1 = init_matrix(3, 3);
+    int mat2 = init_matrix(3, 3);
 
     // set number of threads
     omp_set_num_threads(4);
