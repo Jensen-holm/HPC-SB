@@ -8,14 +8,15 @@
 int main(void) 
 {
     // set the seed for random numbers in matrix
-    srand(time(NULL));
-
-    // create two matrices with random values
-    struct matrix* mat1ptr = new_matrix(3, 3);
-    struct matrix* mat2ptr = new_matrix(3, 3);
+    srand(time(0));
 
     // set number of threads
     omp_set_num_threads(4);
+
+    // initialize thread safe array to store results
+    int arr[4] = {};
+
+    struct matrix* mat1ptr = new_rand_matrix(5, 5);
 
     // tell the compiler to create a team of threads
     #pragma omp parallel
@@ -23,22 +24,20 @@ int main(void)
         int thread_id = omp_get_thread_num();
         printf(" --- Thread %i ---\n", thread_id);
 
-        struct matrix* result;
-        int condition_met = mat_mul(mat1ptr, mat2ptr, result);
+        struct matrix* mat2ptr = new_rand_matrix(5, 5);
+        struct matrix* resultptr = new_empty_matrix(mat1ptr->rows, mat2ptr->cols);
+        int is_valid = mat_mul(mat1ptr, mat2ptr, resultptr);
 
-        if (condition_met == 0) {
-            printf("Matrix multiplication successul. Result: %i\n", *result->data);
+        if (is_valid == 1) {
+            printf("condition not met for matrix multiplication.");
         } else {
-            printf("Matrix multiplication failed. Condition not met.\n");
+            print_matrix(resultptr);
         }
-        
-        free(result);
+
+        free_matrix(mat2ptr);
+        free_matrix(resultptr);
     }
 
-    // the matrices are stored in the heap when initialized
-    // with malloc so we must free them
-    free(mat1ptr);
-    free(mat2ptr);
-
+    free_matrix(mat1ptr);
     return 0;
 }
