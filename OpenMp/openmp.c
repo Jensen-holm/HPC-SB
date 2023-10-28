@@ -8,11 +8,11 @@
 int main(void) 
 {
     // set the seed for random numbers in matrix
-    srand(time(0));
+    srand(time(NULL));
 
     // create two matrices with random values
-    int* mat1ptr = new_matrix(3, 3);
-    int* mat2ptr = new_matrix(3, 3);
+    struct matrix* mat1ptr = new_matrix(3, 3);
+    struct matrix* mat2ptr = new_matrix(3, 3);
 
     // set number of threads
     omp_set_num_threads(4);
@@ -21,7 +21,18 @@ int main(void)
     #pragma omp parallel
     {
         int thread_id = omp_get_thread_num();
-        printf("Hello from thread %d\n", thread_id);
+        printf(" --- Thread %i ---\n", thread_id);
+
+        struct matrix* result;
+        int condition_met = mat_mul(mat1ptr, mat2ptr, result);
+
+        if (condition_met == 0) {
+            printf("Matrix multiplication successul. Result: %i\n", *result->data);
+        } else {
+            printf("Matrix multiplication failed. Condition not met.\n");
+        }
+        
+        free(result);
     }
 
     // the matrices are stored in the heap when initialized
