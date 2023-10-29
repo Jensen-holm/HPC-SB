@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
 
 
 struct matrix 
@@ -26,8 +27,9 @@ struct matrix* new_empty_matrix(int rows, int cols)
     return mat;
 }
 
-struct matrix* new_rand_matrix(int rows, int cols)
+struct matrix* new_rand_matrix(int rows, int cols, int max)
 {
+    srand(time(NULL));
     struct matrix* mat = (struct matrix*) malloc(sizeof(struct matrix));
     mat->rows = rows;
     mat->cols = cols;
@@ -36,7 +38,7 @@ struct matrix* new_rand_matrix(int rows, int cols)
 
     // fill all values with 0 to avoid garbage values
     for (int i = 0; i < mat->data_points; i++) {
-        mat->data[i] = rand();
+        mat->data[i] = rand() % max;
     }
 
     return mat;
