@@ -13,9 +13,6 @@ int main(void)
     // set number of threads
     omp_set_num_threads(4);
 
-    // initialize thread safe array to store results
-    int arr[4] = {};
-
     struct matrix* mat1ptr = new_rand_matrix(5, 5);
 
     // tell the compiler to create a team of threads
