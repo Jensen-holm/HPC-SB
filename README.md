@@ -45,3 +45,5 @@ Now to install openmp:
 #### Mac os
 `$ gcc-12 -fopenmp -Wall <filename>.c`
 
+On my macbook, I set an alias in .zshrc to map "gcc" to "gcc-12"
+
