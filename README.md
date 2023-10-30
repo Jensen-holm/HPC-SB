@@ -20,12 +20,6 @@ to use it and you import is from the omp.h file just like you include stdio.h. <
 
 ### Installation
 
-it wasn't installed by default on my ubutu sysystem so I had to install it with <br>
-this command: <br>
-
-#### Ubutntu: 
-`sudo apt install libomp-dev`
-
 #### Mac os
 
 the default installation of gcc on mac os is just an alias to clang and the default installation of clang on mac os does not ship with OpenMp support. Install gcc with homebrew: <br> 
@@ -39,19 +33,12 @@ Now to install openmp:
 
 ### Compiling
 
-#### Ubuntu
-`$ gcc -fopenmp -Wall <filename>.c`
-
-#### Mac os
 `$ gcc-12 -fopenmp -Wall <filename>.c`
 
 On my macbook, I set an alias in .zshrc to map "gcc" to "gcc-12"
 
-
 ## MPI Notes
 
 ### Installation
-
-#### Mac os
 
 `$ brew install open-mpi`

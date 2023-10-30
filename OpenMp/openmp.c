@@ -1,38 +1,42 @@
+#include "../Matrix/matrix.h"
+#include <omp.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <omp.h>
-#include "../Matrix/matrix.h"
 #include <time.h>
 
-int main(void)
-{
-    int MAX = 100;
-    srand(time(NULL));
-    omp_set_num_threads(100);
-    struct matrix *results_arr[100];
-
-// tell the compiler to create a team of threads
-#pragma omp parallel
-    {
-        int thread_id = omp_get_thread_num();
-
-        int dims = rand() % MAX;
-        struct matrix *mat1 = new_rand_matrix(dims, dims, MAX);
-        struct matrix *mat2 = new_rand_matrix(dims, dims, MAX);
-
-        struct matrix *product = new_empty_matrix(dims, dims);
-        int condition_met = mat_mul(mat1, mat2, product);
-
-        results_arr[thread_id] = product;
-        free_matrix(mat1);
-        free_matrix(mat2);
+int main(int argc, char *argv[]) {
+    if (!argv[1]) {
+        printf("Please specify an argument for num operations.");
+        return 1;
     }
 
-    for (int i = 0; i < 100; i++)
-    {
-        print_matrix(results_arr[i]);
-        free_matrix(results_arr[i]);
+    int NUM_OPERATIONS = atoi(argv[1]);
+    if (NUM_OPERATIONS == 0 && *argv[1] != '0') {
+        printf("Invalid argument for num operations '%s'\n", argv[1]);
+        return 1;
     }
 
+    int dims1 = rand() % 100;
+    int dims2 = rand() % 100;
+    struct matrix *mat1 = new_rand_matrix(dims1, dims2, 1000);
+    struct matrix *mat2 = new_rand_matrix(dims2, dims1, 1000);
+
+    clock_t begin = clock();
+#pragma omp parallel for
+    for (int i = 0; i < NUM_OPERATIONS; i++) {
+        struct matrix *product = new_empty_matrix(dims1, dims1);
+        int invalid = mat_mul(mat1, mat2, product);
+        if (invalid) {
+            printf("matrices did not meet condition for matrix multiplication");
+            continue;
+        }
+        free_matrix(product);
+    }
+    clock_t end = clock();
+
+    free_matrix(mat1);
+    free_matrix(mat2);
+    double run_time = (double) (end - begin) / CLOCKS_PER_SEC;
+    printf("Execution time for OpenMp w/ %i operations: %f", NUM_OPERATIONS, run_time);
     return 0;
 }
