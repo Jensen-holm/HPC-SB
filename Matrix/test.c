@@ -7,7 +7,7 @@ int main(void) {
 
     // ignoring is valid integer because the mat mul
     // condition will always be met in this test
-    int invalid = mat_mul(mat1, mat2, product);
+    int invalid = mat_mul_parallel(mat1, mat2, product);
     if (invalid) {
         printf("matrix multiplication conditions not met for matrices of dims '%ix%i' & '%ix%i'",
                mat1->rows, mat1->cols, mat2->rows, mat2->cols);

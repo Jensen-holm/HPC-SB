@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <omp.h>
 
 struct matrix {
     int rows;
@@ -19,7 +20,6 @@ struct matrix *new_empty_matrix(int rows, int cols) {
     for (int i = 0; i < mat->data_points; i++) {
         mat->data[i] = 0.0;
     }
-
     return mat;
 }
 
@@ -39,10 +39,10 @@ struct matrix *new_rand_matrix(int rows, int cols, int max) {
 
 void print_matrix(struct matrix *mat) {
     printf("[\n");
-    for (int r = 0; r < mat->rows; r++) {
+    for (int row = 0; row < mat->rows; row++) {
         printf("[");
-        for (int c = 0; c < mat->cols; c++) {
-            printf("%f, ", mat->data[r + c]);
+        for (int col = 0; col < mat->cols; col++) {
+            printf("%f, ", mat->data[row + col]);
         }
         printf("]\n");
     }
@@ -70,6 +70,22 @@ int mat_mul(struct matrix *mat1, struct matrix *mat2, struct matrix *product) {
         }
     }
     return 0;
+}
+
+
+int mat_mul_parallel(struct matrix *mat1, struct matrix *mat2, struct matrix *product) {
+    int rows = mat1->rows;
+    int cols = mat2->cols;
+    if (rows != cols) {
+        return 1;
+    }
+
+    if (product->rows != rows || product->cols != cols) {
+        return 1;
+    }
+
+    // setting up
+
 }
 
 void free_matrix(struct matrix *mat) {

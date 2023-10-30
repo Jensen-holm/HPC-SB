@@ -22,7 +22,6 @@ int main(int argc, char *argv[]) {
     struct matrix *mat2 = new_rand_matrix(dims2, dims1, 1000);
 
     double begin = omp_get_wtime();
-#pragma omp parallel for
     for (int i = 0; i < NUM_OPERATIONS; i++) {
         struct matrix *product = new_empty_matrix(dims1, dims1);
         int invalid = mat_mul(mat1, mat2, product);
@@ -37,6 +36,8 @@ int main(int argc, char *argv[]) {
     free_matrix(mat1);
     free_matrix(mat2);
     double run_time = (double) (end - begin);
-    printf("Execution time for OpenMp w/ %i operations: %f seconds\n", NUM_OPERATIONS, run_time);
+    printf("Execution time for plain mat_mul w/ %i operations: %f seconds\n", NUM_OPERATIONS, run_time);
+
+    // now benchmark the mat_mul_parallel function
     return 0;
 }
