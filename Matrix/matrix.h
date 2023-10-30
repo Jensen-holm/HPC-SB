@@ -49,14 +49,27 @@ void print_matrix(struct matrix *mat) {
     printf("]\n");
 }
 
+void free_matrix(struct matrix *mat) {
+    free(mat->data);
+    free(mat);
+}
+
+int mat_mul_check_condition(int rows, int cols, struct matrix *product) {
+    if (rows != cols) {
+        return 1;
+    }
+    if (product->rows != rows || product->cols != cols) {
+        return 1;
+    }
+    return 0;
+}
+
+// naive matrix multiplication
 int mat_mul(struct matrix *mat1, struct matrix *mat2, struct matrix *product) {
     int rows = mat1->rows;
     int cols = mat2->cols;
-    if (cols != rows) {
-        return 1;
-    }
-
-    if (product->rows != rows || product->cols != cols) {
+    int invalid = mat_mul_check_condition(rows, cols, product);
+    if (invalid) {
         return 1;
     }
 
@@ -72,23 +85,13 @@ int mat_mul(struct matrix *mat1, struct matrix *mat2, struct matrix *product) {
     return 0;
 }
 
-
 int mat_mul_parallel(struct matrix *mat1, struct matrix *mat2, struct matrix *product) {
     int rows = mat1->rows;
     int cols = mat2->cols;
-    if (rows != cols) {
+    int invalid = mat_mul_check_condition(rows, cols, product);
+    if (invalid) {
         return 1;
     }
 
-    if (product->rows != rows || product->cols != cols) {
-        return 1;
-    }
-
-    // setting up
-
-}
-
-void free_matrix(struct matrix *mat) {
-    free(mat->data);
-    free(mat);
+    return 0;
 }
