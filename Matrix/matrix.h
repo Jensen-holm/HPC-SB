@@ -7,7 +7,7 @@ struct matrix {
     int rows;
     int cols;
     int data_points;
-    float *data;
+    int *data;
 };
 
 struct matrix *new_empty_matrix(int rows, int cols) {
@@ -15,10 +15,10 @@ struct matrix *new_empty_matrix(int rows, int cols) {
     mat->rows = rows;
     mat->cols = cols;
     mat->data_points = rows * cols;
-    mat->data = (float *) malloc(mat->data_points * sizeof(float));
+    mat->data = (int*) malloc(mat->data_points * sizeof(float));
 
     for (int i = 0; i < mat->data_points; i++) {
-        mat->data[i] = 0.0;
+        mat->data[i] = 0;
     }
     return mat;
 }
@@ -29,7 +29,7 @@ struct matrix *new_rand_matrix(int rows, int cols, int max) {
     mat->rows = rows;
     mat->cols = cols;
     mat->data_points = rows * cols;
-    mat->data = (float *) malloc(mat->data_points * sizeof(float));
+    mat->data = (int *) malloc(mat->data_points * sizeof(float));
 
     for (int i = 0; i < mat->data_points; i++) {
         mat->data[i] = rand() % max;
@@ -38,15 +38,19 @@ struct matrix *new_rand_matrix(int rows, int cols, int max) {
 }
 
 void print_matrix(struct matrix *mat) {
-    printf("[\n");
+    printf("[");
     for (int row = 0; row < mat->rows; row++) {
         printf("[");
         for (int col = 0; col < mat->cols; col++) {
-            printf("%f, ", mat->data[row + col]);
+            int index = row * mat->cols + col;
+            printf("%i, ", mat->data[index]);
         }
-        printf("]\n");
+        if (row != mat->rows - 1) {
+            printf("]\n");
+        } else {
+            printf("]]\n");
+        }
     }
-    printf("]\n");
 }
 
 void free_matrix(struct matrix *mat) {
@@ -73,18 +77,22 @@ int mat_mul(struct matrix *mat1, struct matrix *mat2, struct matrix *product) {
         return 1;
     }
 
+    int inner_dim = mat1->cols;
     for (int row = 0; row < rows; row++) {
         for (int col = 0; col < cols; col++) {
-            int sum = 0;
-            for (int inner_col = 0; inner_col < mat1->cols; inner_col++) {
-                sum += mat1->data[row * cols + inner_col] * mat2->data[inner_col * cols + col];
+            int product_index = row * cols + col;
+            product->data[product_index] = 0;
+            for (int inner_col = 0; inner_col < inner_dim; inner_col++) {
+                int mat1_index = row * inner_dim + inner_col;
+                int mat2_index = inner_col * cols + col;
+                product->data[product_index] += (mat1->data[mat1_index] * mat2->data[mat2_index]);
             }
-            product->data[row * cols + col] = sum;
         }
     }
     return 0;
 }
 
+// parallel version of matrix multiplication
 int mat_mul_parallel(struct matrix *mat1, struct matrix *mat2, struct matrix *product) {
     int rows = mat1->rows;
     int cols = mat2->cols;
@@ -92,6 +100,5 @@ int mat_mul_parallel(struct matrix *mat1, struct matrix *mat2, struct matrix *pr
     if (invalid) {
         return 1;
     }
-
     return 0;
 }

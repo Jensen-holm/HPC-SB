@@ -1,14 +1,15 @@
 #include "matrix.h"
 
 int main(void) {
-    struct matrix *mat1 = new_rand_matrix(3, 5, 10);
-    struct matrix *mat2 = new_rand_matrix(4, 3, 10);
+    struct matrix *mat1 = new_rand_matrix(3, 3, 10);
+    struct matrix *mat2 = new_rand_matrix(3, 3, 10);
     struct matrix *product = new_empty_matrix(mat1->rows, mat2->cols);
 
     int invalid = mat_mul(mat1, mat2, product);
     if (invalid) {
-        printf("matrix multiplication conditions not met for matrices of dims '%ix%i' & '%ix%i'",
+        printf("matrix multiplication conditions not met for matrices of dims '%ix%i' & '%ix%i'\n",
                mat1->rows, mat1->cols, mat2->rows, mat2->cols);
+        return 1;
     }
 
     printf(" --- Matrix Multiplication ---\n");

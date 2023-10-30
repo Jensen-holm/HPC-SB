@@ -4,9 +4,10 @@
 #include <stdlib.h>
 #include <time.h>
 
+
 int main(int argc, char *argv[]) {
     if (!argv[1]) {
-        printf("Please specify an argument for num operations.");
+        printf("Please specify an argument for num operations.\n");
         return 1;
     }
 
@@ -26,7 +27,7 @@ int main(int argc, char *argv[]) {
         struct matrix *product = new_empty_matrix(dims1, dims1);
         int invalid = mat_mul(mat1, mat2, product);
         if (invalid) {
-            printf("matrices did not meet condition for matrix multiplication");
+            printf("matrices did not meet condition for matrix multiplication\n");
             continue;
         }
         free_matrix(product);
