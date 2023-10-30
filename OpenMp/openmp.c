@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
     struct matrix *mat1 = new_rand_matrix(dims1, dims2, 1000);
     struct matrix *mat2 = new_rand_matrix(dims2, dims1, 1000);
 
-    clock_t begin = clock();
+    double begin = omp_get_wtime();
 #pragma omp parallel for
     for (int i = 0; i < NUM_OPERATIONS; i++) {
         struct matrix *product = new_empty_matrix(dims1, dims1);
@@ -32,11 +32,11 @@ int main(int argc, char *argv[]) {
         }
         free_matrix(product);
     }
-    clock_t end = clock();
+    double end = omp_get_wtime();
 
     free_matrix(mat1);
     free_matrix(mat2);
-    double run_time = (double) (end - begin) / CLOCKS_PER_SEC;
-    printf("Execution time for OpenMp w/ %i operations: %f", NUM_OPERATIONS, run_time);
+    double run_time = (double) (end - begin);
+    printf("Execution time for OpenMp w/ %i operations: %f seconds\n", NUM_OPERATIONS, run_time);
     return 0;
 }
