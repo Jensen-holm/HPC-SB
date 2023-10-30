@@ -47,3 +47,11 @@ Now to install openmp:
 
 On my macbook, I set an alias in .zshrc to map "gcc" to "gcc-12"
 
+
+## MPI Notes
+
+### Installation
+
+#### Mac os
+
+`$ brew install open-mpi`
