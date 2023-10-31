@@ -3,13 +3,15 @@
 #include "matrix.h"
 
 // mat_mul -> normal matrix multiplication
+// This function returns a matrix of zeros if the
+// condition is not met
 Matrix *mat_mul(Matrix *mat1, Matrix *mat2) {
+    Matrix *product = new_matrix(mat1->rows, mat2->cols, 0);
     if (mat1->rows != mat2->cols) {
         printf("dimensions of matrices are invalid\n");
-        exit(1);
+        return product;
     }
 
-    Matrix *product = new_matrix(mat1->rows, mat2->cols, 1.0);
     for (int row = 0; row < mat1->rows; row++) {
         for (int col = 0; col < mat2->cols; col++) {
             product->data[row][col] = 0;
