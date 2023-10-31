@@ -9,11 +9,12 @@ Matrix *mat_mul(Matrix *mat1, Matrix *mat2) {
         exit(1);
     }
 
-    Matrix *product = new_matrix(mat1->rows, mat2->cols, 0);
+    Matrix *product = new_matrix(mat1->rows, mat2->cols, 1.0);
     for (int row = 0; row < mat1->rows; row++) {
         for (int col = 0; col < mat2->cols; col++) {
+            product->data[row][col] = 0;
             for (int inner = 0; inner < mat1->cols; inner++) {
-                product->data[row][col] = mat1->data[row][inner] * mat2->data[inner][col];
+                product->data[row][col] += mat1->data[row][inner] * mat2->data[inner][col];
             }
         }
     }
@@ -21,6 +22,7 @@ Matrix *mat_mul(Matrix *mat1, Matrix *mat2) {
 }
 
 
+// mat_mul_parallel -> parallel implementation of mat_mul() using OpenMp
 Matrix *mat_mul_parallel(Matrix *mat1, Matrix *mat2) {
     if (mat1->rows != mat2->cols) {
         printf("dimensions of matrices are invalid\n");

@@ -19,7 +19,8 @@ Matrix *new_matrix(int rows, int cols, int max) {
     for (int i = 0; i < rows; i++) {
         mat->data[i] = (float *) malloc(cols * sizeof(float));
         for (int j = 0; j < cols; j++) {
-            mat->data[i][j] = (float) rand() / max;
+            float rand_num = rand() % max;
+            mat->data[i][j] = rand_num;
         }
     }
 
