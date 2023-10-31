@@ -32,6 +32,6 @@ int main(int argc, char *argv[]) {
     free_matrix(mat1);
     free_matrix(mat2);
     double naive_run_time = (double) (naive_end - naive_begin) / CLOCKS_PER_SEC;
-    printf("Execution time for naive mat_mul w/ %i operations: %f seconds\n", NUM_OPERATIONS, naive_run_time);
+    printf("%f", naive_run_time);
 
 }

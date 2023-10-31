@@ -30,6 +30,6 @@ int main(int argc, char *argv[]) {
     clock_t parallel_end = clock();
 
     double parallel_run_time = (double) (parallel_end - parallel_begin) / CLOCKS_PER_SEC;
-    printf("Execution time for parallelized mat_mul w/ %i operations: %f seconds\n", NUM_OPERATIONS, parallel_run_time);
+    printf("%f", parallel_run_time);
     return 0;
 }

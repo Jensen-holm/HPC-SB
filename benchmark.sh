@@ -5,6 +5,7 @@ RED='\033[1;91m'
 GREEN='\033[32m'
 CYAN='\033[1;36m'
 RESET='\033[0m' 
+YELLOW='\033[0;33m'
 
 # check for input errors
 if [ -z "$1" ]; then
@@ -25,11 +26,11 @@ fi
 # get num operations argument
 num_operations=$1
 
-printf "${CYAN}Computing naive matrix multiplication...${RESET}\n\n"
+printf "${YELLOW}Computing naive matrix multiplication...${RESET}\n\n"
 naive_compute_time=$(./naive $num_operations)
-printf "${GREEN}Naive runtime:${RESET} ${naive_compute_time} seconds\n\n\n"
+printf "Naive runtime: ${CYAN} ${naive_compute_time} ${RESET} seconds\n\n\n"
 
-printf "${CYAN}Computing parallel matrix multiplication...${RESET}\n\n"
+printf "${YELLOW}Computing parallel matrix multiplication...${RESET}\n\n"
 parallel_compute_time=$(./omp $num_operations)
-printf "${GREEN}Parallel runtime:${RESET} ${parallel_compute_time} seconds\n\n\n"
+printf "Parallel runtime: ${CYAN} ${parallel_compute_time} ${RESET} seconds\n\n\n"
 
