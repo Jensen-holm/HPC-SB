@@ -3,8 +3,8 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include "../Matrix/matrix.h"
-#include "../Matrix/mul.h"
+#include "Matrix/matrix.h"
+#include "Matrix/mul.h"
 
 int main(int argc, char *argv[]) {
     if (!argv[1]) {
@@ -23,29 +23,14 @@ int main(int argc, char *argv[]) {
     Matrix *mat1 = new_matrix(dims1, dims2, 1000);
     Matrix *mat2 = new_matrix(dims2, dims1, 1000);
 
-    double naive_begin = omp_get_wtime();
-    for (int i = 0; i < NUM_OPERATIONS; i++) {
-        Matrix *product = new_empty_matrix(dims1, dims1);
-        int _ = mat_mul(mat1, mat2, product);
-        free_matrix(product);
-    }
-    double naive_end = omp_get_wtime();
-
-    free_matrix(mat1);
-    free_matrix(mat2);
-    double naive_run_time = (double) (naive_end - naive_begin);
-    printf("Execution time for naive mat_mul w/ %i operations: %f seconds\n", NUM_OPERATIONS, naive_run_time);
-
-    // now benchmark the mat_mul_parallel function
     double parallel_begin = omp_get_wtime();
     for (int i = 0; i < NUM_OPERATIONS; i++) {
-        Matrix *product = new_empty_matrix(dims1, dims1);
-        int _ = mat_mul(mat1, mat2, product);
+        Matrix *product = mat_mul_parallel(mat1, mat2);
         free_matrix(product);
     }
     double parallel_end = omp_get_wtime();
 
-    double parallel_run_time = (double) (naive_end - naive_begin);
+    double parallel_run_time = (double) (parallel_end - parallel_begin);
     printf("Execution time for parallelized mat_mul w/ %i operations: %f seconds\n", NUM_OPERATIONS, parallel_run_time);
     return 0;
 }
