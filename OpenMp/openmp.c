@@ -1,9 +1,10 @@
-#include "../Matrix/matrix.h"
 #include <omp.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
+#include "../Matrix/matrix.h"
+#include "../Matrix/mul.h"
 
 int main(int argc, char *argv[]) {
     if (!argv[1]) {
@@ -17,28 +18,34 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    int dims1 = rand() % 100;
-    int dims2 = rand() % 100;
-    struct matrix *mat1 = new_rand_matrix(dims1, dims2, 1000);
-    struct matrix *mat2 = new_rand_matrix(dims2, dims1, 1000);
+    int dims1 = rand() % 1000;
+    int dims2 = rand() % 1000;
+    Matrix *mat1 = new_matrix(dims1, dims2, 1000);
+    Matrix *mat2 = new_matrix(dims2, dims1, 1000);
 
-    double begin = omp_get_wtime();
+    double naive_begin = omp_get_wtime();
     for (int i = 0; i < NUM_OPERATIONS; i++) {
-        struct matrix *product = new_empty_matrix(dims1, dims1);
-        int invalid = mat_mul(mat1, mat2, product);
-        if (invalid) {
-            printf("matrices did not meet condition for matrix multiplication\n");
-            continue;
-        }
+        Matrix *product = new_empty_matrix(dims1, dims1);
+        int _ = mat_mul(mat1, mat2, product);
         free_matrix(product);
     }
-    double end = omp_get_wtime();
+    double naive_end = omp_get_wtime();
 
     free_matrix(mat1);
     free_matrix(mat2);
-    double run_time = (double) (end - begin);
-    printf("Execution time for plain mat_mul w/ %i operations: %f seconds\n", NUM_OPERATIONS, run_time);
+    double naive_run_time = (double) (naive_end - naive_begin);
+    printf("Execution time for naive mat_mul w/ %i operations: %f seconds\n", NUM_OPERATIONS, naive_run_time);
 
     // now benchmark the mat_mul_parallel function
+    double parallel_begin = omp_get_wtime();
+    for (int i = 0; i < NUM_OPERATIONS; i++) {
+        Matrix *product = new_empty_matrix(dims1, dims1);
+        int _ = mat_mul(mat1, mat2, product);
+        free_matrix(product);
+    }
+    double parallel_end = omp_get_wtime();
+
+    double parallel_run_time = (double) (naive_end - naive_begin);
+    printf("Execution time for parallelized mat_mul w/ %i operations: %f seconds\n", NUM_OPERATIONS, parallel_run_time);
     return 0;
 }
