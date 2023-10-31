@@ -1,13 +1,11 @@
 #include "matrix.h"
 #include "mul.h"
 #include <stdio.h>
-#include <time.h>
 
 int main(void) {
     Matrix *mat1 = new_matrix(3, 3, 10);
     Matrix *mat2 = new_matrix(3, 3, 10);
     Matrix *product = mat_mul(mat1, mat2);
-
     Matrix *product_parallel = mat_mul_parallel(mat1, mat2);
 
     printf(" --- Matrix Multiplication Naive ---\n");

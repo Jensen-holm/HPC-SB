@@ -31,5 +31,8 @@ int main(int argc, char *argv[]) {
 
     double parallel_run_time = (double) (parallel_end - parallel_begin) / CLOCKS_PER_SEC;
     printf("%f", parallel_run_time);
+
+    free_matrix(mat1)
+    free_matrix(mat2);
     return 0;
 }

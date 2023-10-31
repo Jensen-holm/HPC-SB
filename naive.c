@@ -29,9 +29,9 @@ int main(int argc, char *argv[]) {
     }
     clock_t naive_end = clock();
 
-    free_matrix(mat1);
-    free_matrix(mat2);
     double naive_run_time = (double) (naive_end - naive_begin) / CLOCKS_PER_SEC;
     printf("%f", naive_run_time);
 
+    free_matrix(mat1);
+    free_matrix(mat2);
 }
