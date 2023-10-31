@@ -1,4 +1,3 @@
-#include <omp.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -23,14 +22,14 @@ int main(int argc, char *argv[]) {
     Matrix *mat1 = new_matrix(dims1, dims2, 1000);
     Matrix *mat2 = new_matrix(dims2, dims1, 1000);
 
-    double parallel_begin = omp_get_wtime();
+    clock_t parallel_begin = clock();
     for (int i = 0; i < NUM_OPERATIONS; i++) {
         Matrix *product = mat_mul_parallel(mat1, mat2);
         free_matrix(product);
     }
-    double parallel_end = omp_get_wtime();
+    clock_t parallel_end = clock();
 
-    double parallel_run_time = (double) (parallel_end - parallel_begin);
+    double parallel_run_time = (double) (parallel_end - parallel_begin) / CLOCKS_PER_SEC;
     printf("Execution time for parallelized mat_mul w/ %i operations: %f seconds\n", NUM_OPERATIONS, parallel_run_time);
     return 0;
 }
