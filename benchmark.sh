@@ -2,7 +2,6 @@
 
 # color constants
 RED='\033[1;91m'
-GREEN='\033[32m'
 CYAN='\033[1;36m'
 RESET='\033[0m' 
 YELLOW='\033[0;33m'
@@ -18,7 +17,7 @@ if ! [[ $1 =~ ^[0-9]+$ ]]; then
     exit 1
 fi
 
-if [ $1 -le 0 ]; then
+if [ "$1" -le 0 ]; then
     printf "${RED}ERROR${RESET}: please enter a value for the number of operations greater than 0.\n"
     exit 1
 fi
@@ -33,4 +32,3 @@ printf "Naive runtime: ${CYAN} ${naive_compute_time} ${RESET} seconds\n\n\n"
 printf "${YELLOW}Computing parallel matrix multiplication...${RESET}\n\n"
 parallel_compute_time=$(./omp $num_operations)
 printf "Parallel runtime: ${CYAN} ${parallel_compute_time} ${RESET} seconds\n\n\n"
-
