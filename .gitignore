@@ -1,6 +1,11 @@
 # Prerequisites
 *.d
 
+omp
+naive
+mpi
+cuda
+
 # Object files
 *.o
 *.ko
