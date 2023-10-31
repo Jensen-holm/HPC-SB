@@ -17,10 +17,10 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    int dims1 = rand() % 1000;
-    int dims2 = rand() % 1000;
-    Matrix *mat1 = new_matrix(dims1, dims2, 1000);
-    Matrix *mat2 = new_matrix(dims2, dims1, 1000);
+    int dims1 = rand() % 100;
+    int dims2 = rand() % 100;
+    Matrix *mat1 = new_matrix(dims1, dims2, 10000);
+    Matrix *mat2 = new_matrix(dims2, dims1, 10000);
 
     clock_t naive_begin = clock();
     for (int i = 0; i < NUM_OPERATIONS; i++) {

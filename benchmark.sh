@@ -1,12 +1,29 @@
-#! /bin/bash
+#!/bin/bash
+
+if [ -z "$1" ]; then
+    echo "No argument provided. Please enter a value for the number of operations greater than 0."
+    exit 1
+fi
+
+if ! [[ $1 =~ ^[0-9]+$ ]]; then
+    echo "$1 is not a valid number. Please enter a valid number for the number of operations."
+    exit 1
+fi
+
+if [ $1 -le 0 ]; then
+    echo "Enter a value for the number of operations greater than 0."
+    exit 1
+fi
 
 num_operations=$1
 
-echo "\ncomputing naive mat mul ..."
+echo
+echo "Computing naive matrix multiplication..."
 naive_compute_time=$(./naive $num_operations)
-echo "naive runtime: ${naive_compute_time} seconds"
+echo "Naive runtime: ${naive_compute_time} seconds"
 
-echo "\ncomputing parallel mat mul ..."
+echo
+echo "Computing parallel matrix multiplication..."
 parallel_compute_time=$(./omp $num_operations)
-echo "parallel runtime: ${parallel_compute_time}"
+echo "Parallel runtime: ${parallel_compute_time} seconds"
 
