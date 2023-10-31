@@ -33,16 +33,17 @@ void print_matrix(Matrix *mat) {
         printf("[");
 
         for (int col = 0; col < mat->cols; col++) {
-            int index = row * mat->cols + col;
-            printf("%f, ", *mat->data[index]);
+            printf("%f", mat->data[row][col]);
+            if (col != mat->cols - 1) {
+                printf(", ");
+            }
         }
-
+        printf("]");
         if (row != mat->rows - 1) {
-            printf("]\n");
-        } else {
-            printf("]]\n");
+            printf("\n");
         }
     }
+    printf("]\n");
 }
 
 

@@ -19,3 +19,14 @@ Matrix *mat_mul(Matrix *mat1, Matrix *mat2) {
     }
     return product;
 }
+
+
+Matrix *mat_mul_parallel(Matrix *mat1, Matrix *mat2) {
+    if (mat1->rows != mat2->cols) {
+        printf("dimensions of matrices are invalid\n");
+        exit(1);
+    }
+
+    Matrix *product = new_matrix(mat1->rows, mat2->cols, 0);
+    return product;
+}
