@@ -22,17 +22,19 @@ int main(int argc, char *argv[]) {
     Matrix *mat1 = new_matrix(dims1, dims2, 10000);
     Matrix *mat2 = new_matrix(dims2, dims1, 10000);
 
-    clock_t parallel_begin = clock();
+    // time the matrix multiplication
+    clock_t start = clock();
     for (int i = 0; i < NUM_OPERATIONS; i++) {
         Matrix *product = mat_mul_parallel(mat1, mat2);
         free_matrix(product);
     }
-    clock_t parallel_end = clock();
+    clock_t end = clock();
 
-    double parallel_run_time = (double) (parallel_end - parallel_begin) / CLOCKS_PER_SEC;
-    printf("%f", parallel_run_time);
+    double time_spent = (double)(end - start) / CLOCKS_PER_SEC;
+    printf("%f\n", time_spent);
 
     free_matrix(mat1);
     free_matrix(mat2);
     return 0;
 }
+

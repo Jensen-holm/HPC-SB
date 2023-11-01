@@ -17,8 +17,8 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    int dims1 = rand() % 500;
-    int dims2 = rand() % 500;
+    int dims1 = rand() % 100;
+    int dims2 = rand() % 100;
     Matrix *mat1 = new_matrix(dims1, dims2, 10000);
     Matrix *mat2 = new_matrix(dims2, dims1, 10000);
 
