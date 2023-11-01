@@ -22,15 +22,19 @@ int main(int argc, char *argv[]) {
     Matrix *mat1 = new_matrix(dims1, dims2, 10000);
     Matrix *mat2 = new_matrix(dims2, dims1, 10000);
 
-    clock_t naive_begin = clock();
+    // set up timing
+    struct timespec start, end;
+
+    clock_gettime(CLOCK_REALTIME, &start);
     for (int i = 0; i < NUM_OPERATIONS; i++) {
         Matrix *product = mat_mul(mat1, mat2);
         free_matrix(product);
     }
-    clock_t naive_end = clock();
+    clock_gettime(CLOCK_REALTIME, &end);
 
-    double naive_run_time = (double) (naive_end - naive_begin) / CLOCKS_PER_SEC;
-    printf("%f", naive_run_time);
+    // calculate elapsed time
+    double elapsed = (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1e9;
+    printf("%f", elapsed);
 
     free_matrix(mat1);
     free_matrix(mat2);
