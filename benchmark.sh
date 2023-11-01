@@ -36,3 +36,6 @@ parallel_compute_time=$(./omp $num_operations)
 printf "${GREEN}done${RESET}\n"
 printf "Parallel runtime: ${CYAN} ${parallel_compute_time} ${RESET} seconds\n\n\n"
 
+parallel_speedup=$(echo "scale=2; $naive_compute_time / $parallel_compute_time" | bc)
+printf "Parallel speedup: ${CYAN} ${parallel_speedup}x ${RESET}\n"
+
