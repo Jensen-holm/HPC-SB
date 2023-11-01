@@ -17,12 +17,11 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    int dims1 = rand() % 100;
-    int dims2 = rand() % 100;
+    int dims1 = rand() % 500;
+    int dims2 = rand() % 500;
     Matrix *mat1 = new_matrix(dims1, dims2, 10000);
     Matrix *mat2 = new_matrix(dims2, dims1, 10000);
 
-    // time the matrix multiplication
     clock_t start = clock();
     for (int i = 0; i < NUM_OPERATIONS; i++) {
         Matrix *product = mat_mul_parallel(mat1, mat2);
@@ -31,7 +30,7 @@ int main(int argc, char *argv[]) {
     clock_t end = clock();
 
     double time_spent = (double)(end - start) / CLOCKS_PER_SEC;
-    printf("%f\n", time_spent);
+    printf("%f", time_spent);
 
     free_matrix(mat1);
     free_matrix(mat2);
