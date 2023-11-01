@@ -31,7 +31,7 @@ Now to install openmp:
 
 #### OMP vs. naive matrix multiplication
 
-![](https://github.com/Jensen-holm/HPC-SB/tree/main/demos/omp_vs_naive.gif)
+![](https://github.com/Jensen-holm/HPC-SB/blob/main/demos/omp_vs_naive.gif)
 
 as you can see in the screen recording above, matrix multiplication is a lot faster with the parallel implementation using openmp.
 The test in the video timed how long it took both the naive approach to matrix multiplication and openmp version to compute matrix multiplication 50 times with matrices that have large dimensions.
