@@ -1,4 +1,4 @@
-#!/bin/bash
+#! /bin/bash
 
 gcc-12 -Wall -fopenmp ./Matrix/mul.c ./Matrix/matrix.c naive.c -o naive
 

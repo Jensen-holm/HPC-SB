@@ -7,7 +7,7 @@
 // This function returns a matrix of zeros if the
 // condition is not met
 Matrix *mat_mul(Matrix *mat1, Matrix *mat2) {
-    Matrix *product = new_matrix(mat1->rows, mat2->cols, 0);
+    Matrix *product = new_matrix(mat1->rows, mat2->cols, 2.0);
     if (mat1->rows != mat2->cols) {
         printf("dimensions of matrices are invalid\n");
         return product;
@@ -27,7 +27,7 @@ Matrix *mat_mul(Matrix *mat1, Matrix *mat2) {
 
 // mat_mul_parallel -> parallel implementation of mat_mul() using OpenMp
 Matrix *mat_mul_parallel(Matrix *mat1, Matrix *mat2) {
-    Matrix *product = new_matrix(mat1->rows, mat2->cols, 0);
+    Matrix *product = new_matrix(mat1->rows, mat2->cols, 2.0);
     if (mat1->rows != mat2->cols) {
         printf("dimensions of matrices are invalid\n");
         return product;
