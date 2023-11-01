@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # color constants
+GREEN='\033[0;32m'
 RED='\033[1;91m'
 CYAN='\033[1;36m'
 RESET='\033[0m' 
@@ -25,10 +26,13 @@ fi
 # get num operations argument
 num_operations=$1
 
-printf "${YELLOW}Computing naive matrix multiplication...${RESET}\n\n"
+printf "${YELLOW}Computing naive matrix multiplication...${RESET}\n"
 naive_compute_time=$(./naive $num_operations)
+printf "${GREEN}done${RESET}\n"
 printf "Naive runtime: ${CYAN} ${naive_compute_time} ${RESET} seconds\n\n\n"
 
-printf "${YELLOW}Computing parallel matrix multiplication...${RESET}\n\n"
+printf "${YELLOW}Computing parallel matrix multiplication...${RESET}\n"
 parallel_compute_time=$(./omp $num_operations)
+printf "${GREEN}done${RESET}\n"
 printf "Parallel runtime: ${CYAN} ${parallel_compute_time} ${RESET} seconds\n\n\n"
+

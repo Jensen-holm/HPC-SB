@@ -5,6 +5,8 @@ omp
 naive
 mpi
 cuda
+tst
+a.out
 
 # Object files
 *.o
