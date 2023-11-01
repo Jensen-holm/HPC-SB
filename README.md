@@ -20,8 +20,6 @@ to use it and you import is from the omp.h file just like you include stdio.h. <
 
 ### Installation
 
-#### Mac os
-
 the default installation of gcc on mac os is just an alias to clang and the default installation of clang on mac os does not ship with OpenMp support. Install gcc with homebrew: <br> 
 
 `brew install gcc` <br>
@@ -30,6 +28,13 @@ Now you should check what version you just installed and then use that when comp
 
 Now to install openmp:
 `brew install libomp`
+
+#### OMP vs. naive matrix multiplication
+
+![](https://github.com/Jensen-holm/HPC-SB/tree/main/demos)
+
+as you can see in the screen recording above, matrix multiplication is a lot faster with the parallel implementation using openmp.
+The test in the video timed how long it took both the naive approach to matrix multiplication and openmp version to compute matrix multiplication 50 times with matrices that have large dimensions.
 
 ### Compiling
 
