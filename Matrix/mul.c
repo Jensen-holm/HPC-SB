@@ -33,12 +33,12 @@ Matrix *mat_mul_parallel(Matrix *mat1, Matrix *mat2) {
         return product;
     }
 
-    int row, col, inner;
-#pragma omp parallel for private(row, col, inner)
-    for (row = 0; row < mat1->rows; row++) {
-        for (col = 0; col < mat2->cols; col++) {
+#pragma omp parallel for 
+    for (int row = 0; row < mat1->rows; row++) {
+#pragma omp parallel for 
+        for (int col = 0; col < mat2->cols; col++) {
             float local_sum = 0;
-            for (inner = 0; inner < mat1->cols; inner++) {
+            for (int inner = 0; inner < mat1->cols; inner++) {
                 local_sum += mat1->data[row][inner] * mat2->data[inner][col];
             }
             product->data[row][col] = local_sum;
