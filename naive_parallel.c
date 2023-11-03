@@ -26,6 +26,7 @@ int main(int argc, char *argv[]) {
     struct timespec start, end;
 
     clock_gettime(CLOCK_REALTIME, &start);
+#pragma omp parallel for
     for (int i = 0; i < NUM_OPERATIONS; i++) {
         Matrix *product = mat_mul(mat1, mat2);
         free_matrix(product);
