@@ -2,6 +2,10 @@
 
 This repo is a 'sandbox' for me to get familiar with different HPC patterns and algorithms before beginning an undergraduate research project in the HPC field. <br>
 
+## Benchmarking & Running Locally
+
+...
+
 ## OpenMP Notes
 
 These notes are for my future reference. Currently exploring parallel programming <br>
