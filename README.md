@@ -51,7 +51,7 @@ On my macbook, I set an alias in .zshrc to map "gcc" to "gcc-12"
 ![](https://github.com/Jensen-holm/HPC-SB/blob/main/demos/benchmark_demo.gif)
 
 as you can see in the screen recording above, matrix multiplication is a lot faster with the parallel implementation using openmp.
-The test in the video timed how long it took both the naive approach to matrix multiplication and openmp version to compute matrix multiplication 50 times with matrices that have large dimensions. next to where I am benchmarking the two implementations, I have htop running so you can see how openmp is working. There is only one cpu being utilized. But once the parallel code is running, all of the cpu's light up at the same time because the computation is being split amongst the cpu's. Cool stuff
+The test in the video timed how long it took both the naive approach to matrix multiplication and openmp version to compute matrix multiplication 15 times with matrices that have large dimensions. next to where I am benchmarking the two implementations, I have htop running so you can see how openmp is working. There is only one cpu being utilized. But once the parallel code is running, all of the cpu's light up at the same time because the computation is being split amongst the cpu's. Cool stuff
 
 ## MPI Notes
 
