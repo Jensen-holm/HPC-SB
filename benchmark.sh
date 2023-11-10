@@ -46,7 +46,7 @@ parallel_speedup=$(echo "scale=2; $naive_compute_time / $parallel_compute_time" 
 printf "Naive parallel speedup: ${CYAN} ${naive_parallel_speedup}x ${RESET}\n"
 printf "Parallel speedup: ${CYAN} ${parallel_speedup}x ${RESET}\n\n\n"
 
-printf "${YELLOW} Computing MPI matrix multiplication...${RESET}\n"
-mpi_compute_time=$(./mpi $num_operations)
-printf "${GREEN}done${RESET}\n"
-printf "MPI runtime: ${CYAN} ${mpi_compute_time} ${RESET} seconds\n"
+#printf "${YELLOW} Computing MPI matrix multiplication...${RESET}\n"
+#mpi_compute_time=$(./mpi $num_operations)
+#printf "${GREEN}done${RESET}\n"
+#printf "MPI runtime: ${CYAN} ${mpi_compute_time} ${RESET} seconds\n"
