@@ -3,6 +3,7 @@
 
 omp
 naive
+naive_parallel
 mpi
 cuda
 tst
@@ -64,3 +65,4 @@ dkms.conf
 
 cmake-build-debug
 *cmake
+
