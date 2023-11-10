@@ -48,7 +48,6 @@ Matrix *mat_mul_parallel(Matrix *mat1, Matrix *mat2) {
             product->data[row][col] = local_sum;
         }
     }
-
     return product;
 }
 

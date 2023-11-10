@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
     Matrix *mat1 = new_matrix(dims1, dims2, 10000);
     Matrix *mat2 = new_matrix(dims2, dims1, 10000);
 
-    // set up timing
+    // set up wall clock timing
     struct timespec start, end;
 
     clock_gettime(CLOCK_REALTIME, &start);
@@ -32,7 +32,7 @@ int main(int argc, char *argv[]) {
     }
     clock_gettime(CLOCK_REALTIME, &end);
 
-    // calculate elapsed time
+    // calculate elapsed wall clock time
     double elapsed = (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1e9;
     printf("%f", elapsed);
 
@@ -40,4 +40,3 @@ int main(int argc, char *argv[]) {
     free_matrix(mat2);
     return 0;
 }
-

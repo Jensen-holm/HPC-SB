@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 #include <omp.h>
 
 typedef struct {
@@ -23,7 +22,6 @@ Matrix *new_matrix(int rows, int cols, int max) {
             mat->data[i][j] = rand_num;
         }
     }
-
     return mat;
 }
 
@@ -48,6 +46,7 @@ void print_matrix(Matrix *mat) {
 }
 
 
+// Matrices are stored in the heap, so we need to free them
 void free_matrix(Matrix *mat) {
     for (int i = 0; i < mat->rows; i++) {
         free(mat->data[i]);

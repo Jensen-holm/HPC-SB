@@ -4,7 +4,14 @@ This repo is a 'sandbox' for me to get familiar with different HPC patterns and 
 
 ## Benchmarking & Running Locally
 
-...
+You may need to reconfigure the pound bang path to your bash interpreter as it points
+to where my bash interpreter is and if you are not on mac os, it is likley different than
+what it is on my machine. You also need to have make installed.
+
+1. `git clone ___ && cd HPC-SB` <br>
+2. `make` <br>
+3. `chmod u+x benchmark.sh` <br>
+4. `./benchmark <NUM_OPERATIONS>` <br>
 
 ## OpenMP Notes
 
