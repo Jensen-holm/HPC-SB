@@ -1,6 +1,6 @@
 # High Performance Computing Sandbox
 
-This repo is a 'sandbox' for me to get familiar with different HPC patterns and algorithms before beginning an undergraduate research project in the HPC field. <br>
+This repo is a 'sandbox' for me to get familiar with different HPC patterns and algorithms before beginning an undergraduate research project in applied HPC for chemistry simulation. <br>
 
 ## Benchmarking & Running Locally
 
@@ -8,10 +8,10 @@ You may need to reconfigure the pound bang path to your bash interpreter as it p
 to where my bash interpreter is and if you are not on mac os, it is likley different than
 what it is on my machine. You also need to have make installed.
 
-1. `git clone ___ && cd HPC-SB` <br>
-2. `make` <br>
-3. `chmod u+x benchmark.sh` <br>
-4. `./benchmark <NUM_OPERATIONS>` <br>
+1. `$ git clone https://github.com/Jensen-holm/HPC-SB && cd HPC-SB` <br>
+2. `$ make` <br>
+3. `$ chmod u+x benchmark.sh` <br>
+4. `$ ./benchmark <NUM_OPERATIONS>` <br>
 
 ## OpenMP Notes
 
@@ -25,7 +25,6 @@ Since it is a compiler side solution, no additional libraries need to be install
 to use it and you import is from the omp.h file just like you include stdio.h. <br> 
 
 ```c
-#include <stdio.h>
 #include <omp.h>
 ```
 
@@ -42,9 +41,13 @@ Now to install openmp:
 
 ### Compiling
 
+##### Without MakeFile
 `$ gcc-12 -fopenmp -Wall <filename>.c`
 
-On my macbook, I set an alias in .zshrc to map "gcc" to "gcc-12"
+##### With MakeFile
+`$ make all` <br>
+
+On my macbook, I set an alias in .zshrc to map "gcc" to "gcc-12" since the default gcc on Mac is an alias to clang
 
 #### OMP vs. naive matrix multiplication
 
@@ -55,6 +58,5 @@ The test in the video timed how long it took both the naive approach to matrix m
 
 ## MPI Notes
 
-### Installation
+In progress ...
 
-`$ brew install open-mpi`
