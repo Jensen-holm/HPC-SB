@@ -9,10 +9,8 @@ int main(void) {
     Matrix *mat2 = new_matrix(3, 2, 100);
 
     Matrix *product = mat_mul(mat1, mat2);
-    double naive_runtime = (double) (naive_end - naive_start) / CLOCKS_PER_SEC;
 
     Matrix *product_parallel = mat_mul_parallel(mat1, mat2);
-    double parallel_runtime = (double) (parallel_end - parallel_start) / CLOCKS_PER_SEC;
 
     printf(" --- Matrix Multiplication Naive ---\n");
     print_matrix(mat1);

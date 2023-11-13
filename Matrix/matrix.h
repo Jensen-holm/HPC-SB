@@ -10,6 +10,10 @@ typedef struct {
 
 Matrix *new_matrix(int rows, int cols, int max);
 
+float index_matrix(Matrix *mat, int row, int col);
+
+void set_matrix_index(Matrix *mat, int row, int col, float val);
+
 void print_matrix(Matrix *mat);
 
 void free_matrix(Matrix *mat);

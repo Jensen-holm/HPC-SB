@@ -18,9 +18,10 @@ Matrix *mat_mul(Matrix *mat1, Matrix *mat2) {
         for (int col = 0; col < mat2->cols; col++) {
             float local_sum = 0;
             for (int inner = 0; inner < mat1->cols; inner++) {
-                local_sum += mat1->data[row][inner] * mat2->data[inner][col];
+                local_sum += index_matrix(mat1, row, inner) * index_matrix(mat2, inner, col);
             }
-            product->data[row][col] = local_sum;
+
+            set_matrix_index(product, row, col, local_sum);
         }
     }
     return product;
@@ -39,13 +40,13 @@ Matrix *mat_mul_parallel(Matrix *mat1, Matrix *mat2) {
         // I noticed that the parallelization of the inner loop
         // actually slowed down the program in some instances but
         // I am leaving it here for now
-#pragma omp parallel for
         for (int col = 0; col < mat2->cols; col++) {
             float local_sum = 0;
             for (int inner = 0; inner < mat1->cols; inner++) {
-                local_sum += mat1->data[row][inner] * mat2->data[inner][col];
+                local_sum += index_matrix(mat1, row, inner) * index_matrix(mat2, inner, col);
             }
-            product->data[row][col] = local_sum;
+
+            set_matrix_index(product, row, col, local_sum);
         }
     }
     return product;
