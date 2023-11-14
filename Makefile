@@ -1,8 +1,8 @@
 MPICC = mpicc
 CC = gcc-12
 CFLAGS = -Wall -fopenmp
-OBJS = Matrix/matrix.c
-TARGETS = naive naive_parallel openmp
+OBJS = ./Matrix/matrix.c
+TARGETS = naive naive_parallel openmp message_passing
 
 all: $(TARGETS)
 
@@ -14,6 +14,9 @@ naive_parallel: NORM/naive_parallel.c
 
 openmp: OMP/openmp.c
 	$(CC) $(CFLAGS) -o $@ $^ $(OBJS) ./Matrix/Mul/omp_mul.c
+
+message_passing: MPI/message_passing.c
+	$(MPICC) $(MPICCFLAGS) -o $@ $^ $(OBJS) ./Matrix/Mul/mpi_mul.c
 
 clean:
 	rm -f $(TARGETS)

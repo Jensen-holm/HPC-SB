@@ -5,12 +5,12 @@
 
 // mat_mul_parallel -> parallel implementation of mat_mul() using OpenMp
 Matrix *mat_mul_omp(Matrix *mat1, Matrix *mat2) {
-    Matrix *product = new_matrix(mat1->rows, mat2->cols, 2.0);
     if (mat1->rows != mat2->cols) {
         printf("dimensions of matrices are invalid\n");
-        return product;
+        return NULL;
     }
 
+    Matrix *product = new_matrix(mat1->rows, mat2->cols, 2.0);
 #pragma omp parallel for
     for (int row = 0; row < mat1->rows; row++) {
         // I noticed that the parallelization of the inner loop

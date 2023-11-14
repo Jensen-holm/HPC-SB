@@ -58,5 +58,8 @@ The test in the video timed how long it took both the naive approach to matrix m
 
 ## MPI Notes
 
-In progress ...
+Documentation link: https://curc.readthedocs.io/en/latest/programming/MPI-C.html
+
+
+
 

@@ -4,6 +4,7 @@
 omp
 naive
 naive_parallel
+message_passing
 openmp
 mpi
 cuda
