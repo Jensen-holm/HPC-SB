@@ -2,8 +2,10 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include "Matrix/matrix.h"
-#include "Matrix/mul.h"
+#include "../Matrix/matrix.h"
+#include "../Matrix/Mul/norm_mul.h"
+#include <omp.h>
+
 
 int main(int argc, char *argv[]) {
     if (!argv[1]) {
@@ -26,6 +28,7 @@ int main(int argc, char *argv[]) {
     struct timespec start, end;
 
     clock_gettime(CLOCK_REALTIME, &start);
+#pragma omp parallel for
     for (int i = 0; i < NUM_OPERATIONS; i++) {
         Matrix *product = mat_mul(mat1, mat2);
         free_matrix(product);

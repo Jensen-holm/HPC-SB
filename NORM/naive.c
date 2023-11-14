@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include "Matrix/matrix.h"
-#include "Matrix/mul.h"
+#include "../Matrix/matrix.h"
+#include "../Matrix/Mul/norm_mul.h"
 
 int main(int argc, char *argv[]) {
     if (!argv[1]) {
@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
 
     clock_gettime(CLOCK_REALTIME, &start);
     for (int i = 0; i < NUM_OPERATIONS; i++) {
-        Matrix *product = mat_mul_parallel(mat1, mat2);
+        Matrix *product = mat_mul(mat1, mat2);
         free_matrix(product);
     }
     clock_gettime(CLOCK_REALTIME, &end);
@@ -38,5 +38,4 @@ int main(int argc, char *argv[]) {
 
     free_matrix(mat1);
     free_matrix(mat2);
-    return 0;
 }

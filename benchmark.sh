@@ -37,7 +37,7 @@ echo -e  "${GREEN}done${RESET}"
 echo -e  "Naive parallel runtime: ${CYAN} ${naive_parallel_compute_time} ${RESET} seconds\n\n"
 
 echo -e "${YELLOW}Computing parallel matrix multiplication...${RESET}"
-parallel_compute_time=$(./omp "$num_operations")
+parallel_compute_time=$(./openmp "$num_operations")
 echo -e  "${GREEN}done${RESET}"
 echo -e  "Parallel runtime: ${CYAN} ${parallel_compute_time} ${RESET} seconds\n\n"
 

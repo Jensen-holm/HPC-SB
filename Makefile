@@ -1,19 +1,19 @@
+MPICC = mpicc
 CC = gcc-12
 CFLAGS = -Wall -fopenmp
-SRC_DIR = ./Matrix
-OBJS = ./Matrix/mul.c ./Matrix/matrix.c
-TARGETS = naive naive_parallel omp
+OBJS = Matrix/matrix.c
+TARGETS = naive naive_parallel openmp
 
 all: $(TARGETS)
 
-naive: $(OBJS) naive.c
-	$(CC) $(CFLAGS) $(OBJS) naive.c -o naive
+naive: NORM/naive.c
+	$(CC) $(CFLAGS) -o $@ $^ $(OBJS) ./Matrix/Mul/norm_mul.c
 
-naive_parallel: $(OBJS) naive_parallel.c
-	$(CC) $(CFLAGS) $(OBJS) naive_parallel.c -o naive_parallel
+naive_parallel: NORM/naive_parallel.c
+	$(CC) $(CFLAGS) -o $@ $^ $(OBJS) ./Matrix/Mul/norm_mul.c
 
-omp: openmp.c $(OBJS)
-	$(CC) $(CFLAGS) openmp.c -o omp $(OBJS)
+openmp: OMP/openmp.c
+	$(CC) $(CFLAGS) -o $@ $^ $(OBJS) ./Matrix/Mul/omp_mul.c
 
 clean:
 	rm -f $(TARGETS)
