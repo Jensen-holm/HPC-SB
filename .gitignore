@@ -4,6 +4,7 @@
 omp
 naive
 naive_parallel
+openmp
 mpi
 cuda
 tst
