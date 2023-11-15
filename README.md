@@ -62,4 +62,8 @@ Documentation link: https://curc.readthedocs.io/en/latest/programming/MPI-C.html
 
 
 
+## Running on clipper
+
+I ran 10,000 iterations of the openmp implementation and it took 17 seconds <br>
+on clipper and 404 seconds on my local machine (M1 macbook air) ...
 
