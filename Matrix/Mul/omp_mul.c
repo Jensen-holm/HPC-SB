@@ -1,9 +1,26 @@
-#include "../matrix.h"
+/*
+ * =====================================================================================
+ *
+ *       Filename:  omp_mul.c
+ *
+ *    Description:  OpenMP matrix multiplication 
+ *
+ *        Version:  1.0
+ *        Created:  11/17/2023 15:53:17
+ *       Revision:  none
+ *       Compiler:  gcc
+ *
+ *         Author:  Jensen Holm 
+ *   Organization:  GVSU undergraduate research
+ *
+ * =====================================================================================
+ */
+
 #include <stdio.h>
 #include <omp.h>
+#include "../matrix.h"
 
 
-// mat_mul_parallel -> parallel implementation of mat_mul() using OpenMp
 Matrix *mat_mul_omp(Matrix *mat1, Matrix *mat2) {
     if (mat1->rows != mat2->cols) {
         printf("dimensions of matrices are invalid\n");
@@ -28,5 +45,6 @@ Matrix *mat_mul_omp(Matrix *mat1, Matrix *mat2) {
     }
     return product;
 }
+
 
 

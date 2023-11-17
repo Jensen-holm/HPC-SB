@@ -1,5 +1,23 @@
-#include "../matrix.h"
+/*
+ * =====================================================================================
+ *
+ *       Filename:  norm_mul.c
+ *
+ *    Description:  matrix multiplication without any HPC optimization 
+ *
+ *        Version:  1.0
+ *        Created:  11/17/2023 16:10:30
+ *       Revision:  none
+ *       Compiler:  gcc-12
+ *
+ *         Author:  Jensen Holm 
+ *   Organization:  GVSU undergraduate research 
+ *
+ * =====================================================================================
+ */
+#include <stdlib.h>
 #include <stdio.h>
+#include "../matrix.h"
 
 
 Matrix *mat_mul(Matrix *mat1, Matrix *mat2) {
@@ -21,4 +39,5 @@ Matrix *mat_mul(Matrix *mat1, Matrix *mat2) {
     }
     return product;
 }
+
 

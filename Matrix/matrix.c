@@ -1,3 +1,21 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename:  matrix.c
+ *
+ *    Description:  Matrix structure and simple operations 
+ *
+ *        Version:  1.0
+ *        Created:  11/17/2023 15:54:33
+ *       Revision:  none
+ *       Compiler:  gcc
+ *
+ *         Author:  Jensen Holm 
+ *   Organization:  GVSU undergraduate research 
+ *
+ * =====================================================================================
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -59,3 +77,4 @@ void free_matrix(Matrix *mat) {
     free(mat->data);
     free(mat);
 }
+
